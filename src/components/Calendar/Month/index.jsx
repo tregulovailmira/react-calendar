@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react';
+import WeekDays from './WeekDays';
 import Week from './Week';
 import { startOfWeek, endOfMonth, add, format, isSameMonth } from 'date-fns';
 
@@ -22,6 +23,7 @@ const Month = (props) => {
 
   return (
     <table>
+      <WeekDays />
       <tbody>
         {getWeeks.map((week) => (
           <Week {...props} week={week} key={format(week[0], 'w')} />
