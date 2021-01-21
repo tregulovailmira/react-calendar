@@ -3,6 +3,7 @@ import NavigationButton from './NavigationButton';
 import { format, sub, add } from 'date-fns';
 import { mdiCalendarMonthOutline } from '@mdi/js';
 import Icon from '@mdi/react';
+import styles from './CalendarNavigation.module.sass';
 
 const CalendarNavigation = ({ selectedMonth, setMonth }) => {
   const setPrevMonth = () => {
@@ -21,13 +22,15 @@ const CalendarNavigation = ({ selectedMonth, setMonth }) => {
   const selectMonth = format(selectedMonth, 'MMMM');
 
   return (
-    <div>
-      <NavigationButton onClick={setPrevMonth}>{prevMonth}</NavigationButton>
-      <div>{selectMonth}</div>
-      <NavigationButton onClick={setCurrentMonth}>
-        <Icon path={mdiCalendarMonthOutline} size={1} />
-      </NavigationButton>
-      <NavigationButton onClick={setNextMonth}>{nextMonth}</NavigationButton>
+    <div className={styles.navigationWrapper}>
+      <div className={styles.month}>{selectMonth}</div>
+      <div className={styles.navigationControls}>
+        <NavigationButton onClick={setPrevMonth}>{prevMonth}</NavigationButton>
+        <NavigationButton onClick={setCurrentMonth} title="Today">
+          <Icon path={mdiCalendarMonthOutline} size={1} />
+        </NavigationButton>
+        <NavigationButton onClick={setNextMonth}>{nextMonth}</NavigationButton>
+      </div>
     </div>
   );
 };

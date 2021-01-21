@@ -3,6 +3,7 @@ import CurrentDay from './CurrentDate';
 import Month from './Month';
 import CalendarNavigation from './CalendarNavigation';
 import { startOfMonth, add, sub } from 'date-fns';
+import styles from './Calendar.module.sass';
 
 const Calendar = () => {
   const [selectedDay, setSelectedDay] = useState(new Date());
@@ -28,9 +29,11 @@ const Calendar = () => {
   };
 
   return (
-    <article>
-      <CurrentDay currentDay={currentDay} />
-      <CalendarNavigation selectedMonth={selectedMonth} setMonth={setMonth} />
+    <article className={styles.calendarWrapper}>
+      <div className={styles.headerWrapper}>
+        <CurrentDay currentDay={currentDay} />
+        <CalendarNavigation selectedMonth={selectedMonth} setMonth={setMonth} />
+      </div>
       <Month
         setSelectedDayHandler={setSelectedDayHandler}
         selectedDay={selectedDay}

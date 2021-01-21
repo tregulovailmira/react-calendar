@@ -1,5 +1,7 @@
 import React from 'react';
 import { getDate, isSameMonth, isSameDay } from 'date-fns';
+import styles from './Day.module.sass';
+import cx from 'classnames';
 
 const Day = ({
   selectedDay,
@@ -12,11 +14,16 @@ const Day = ({
     setSelectedDayHandler(day);
   };
 
+  const dayStylesClasses = cx(styles.dayWrapper, {
+    [styles.anotherMonthDays]: !isSameMonth(selectedMonth, day),
+    [styles.currentMonthDays]: isSameMonth(selectedMonth, day),
+    [styles.selectedDay]: isSameDay(selectedDay, day),
+    [styles.currentDay]: isSameDay(currentDay, day),
+  });
+
   return (
-    <td onClick={selectDay}>
-      <p style={{ color: isSameMonth(selectedMonth, day) ? 'green' : 'gray', background: isSameDay(currentDay, day) ? 'red' : 'none' }}>
-        {getDate(day)}
-      </p>
+    <td onClick={selectDay} className={dayStylesClasses}>
+      <p>{getDate(day)}</p>
     </td>
   );
 };

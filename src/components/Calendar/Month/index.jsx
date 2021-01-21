@@ -2,6 +2,7 @@ import React, { useMemo } from 'react';
 import WeekDays from './WeekDays';
 import Week from './Week';
 import { startOfWeek, endOfMonth, add, format, isSameMonth } from 'date-fns';
+import styles from './Month.module.sass';
 
 const Month = (props) => {
   const { selectedMonth } = props;
@@ -22,7 +23,7 @@ const Month = (props) => {
   }, [endOfMonth(selectedMonth)]);
 
   return (
-    <table>
+    <table className={styles.calendarBody}>
       <WeekDays />
       <tbody>
         {getWeeks.map((week) => (

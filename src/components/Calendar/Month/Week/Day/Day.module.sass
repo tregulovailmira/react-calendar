@@ -1,0 +1,37 @@
+.dayWrapper
+    text-align: center
+    vertical-align: middle
+    width: 100% * 1 / 7
+    cursor: pointer
+
+
+.currentMonthDays
+    color: #000266
+
+.anotherMonthDays
+    color: #b6b6b6
+
+.currentDay
+    position: relative
+
+.currentDay
+    & > p::before
+            position: absolute
+            content: "."
+            bottom: 34px
+            right: 25px
+            color: red
+            font-size: 25px
+
+%selectedDayStyles
+    border-radius: 5px
+    color: #ffffff
+
+.dayWrapper:hover
+    background-color: #000266
+    @extend %selectedDayStyles
+
+
+.selectedDay
+    background-color: #000266
+    @extend %selectedDayStyles

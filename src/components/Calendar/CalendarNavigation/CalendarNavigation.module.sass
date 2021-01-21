@@ -1,0 +1,21 @@
+%displayFlex
+    display: flex
+    justify-content: space-between
+    
+.navigationWrapper
+    @extend %displayFlex
+    align-items: center
+    color: #ffffff
+    margin-top: 5px
+
+    .navigationControls
+        @extend %displayFlex
+        margin-right: 14px
+
+        & > button 
+            margin-left: 5px
+
+    .month 
+        margin-left: 14px
+        font-size: 1.5rem
+        font-weight: bold
