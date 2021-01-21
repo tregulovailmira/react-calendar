@@ -6,8 +6,7 @@ import styles from './CurrentDate.module.sass';
 const CurrentDay = ({ currentDay }) => {
   return (
     <div className={styles.currentDate}>
-      <div>{format(currentDay, 'iiii')}</div>
-      <div>{format(currentDay, 'MMM, d')}</div>
+      <div>{format(currentDay, 'iiii, MMM d')}</div>
     </div>
   );
 };
