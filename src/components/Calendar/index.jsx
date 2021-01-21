@@ -8,7 +8,8 @@ import styles from './Calendar.module.sass';
 const Calendar = () => {
   const [selectedDay, setSelectedDay] = useState(new Date());
   const [selectedMonth, setSelectedMonth] = useState(startOfMonth(new Date()));
-  const [currentDay, setCurrentDay] = useState(new Date());
+  // const [currentDay, setCurrentDay] = useState(new Date());
+  const currentDay = new Date();
 
   const setSelectedDayHandler = (value) => {
     setSelectedDay(value);

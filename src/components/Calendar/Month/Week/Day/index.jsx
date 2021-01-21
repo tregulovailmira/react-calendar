@@ -1,5 +1,5 @@
 import React from 'react';
-import { getDate, isSameMonth, isSameDay } from 'date-fns';
+import { getDate, isSameMonth, isSameDay, isWeekend } from 'date-fns';
 import styles from './Day.module.sass';
 import cx from 'classnames';
 
@@ -19,6 +19,7 @@ const Day = ({
     [styles.currentMonthDays]: isSameMonth(selectedMonth, day),
     [styles.selectedDay]: isSameDay(selectedDay, day),
     [styles.currentDay]: isSameDay(currentDay, day),
+    [styles.weekend]: isWeekend(day)
   });
 
   return (

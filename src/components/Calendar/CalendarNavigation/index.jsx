@@ -19,7 +19,7 @@ const CalendarNavigation = ({ selectedMonth, setMonth }) => {
 
   const prevMonth = format(sub(selectedMonth, { months: 1 }), 'MMM');
   const nextMonth = format(add(selectedMonth, { months: 1 }), 'MMM');
-  const selectMonth = format(selectedMonth, 'MMMM');
+  const selectMonth = format(selectedMonth, 'yyyy, MMMM');
 
   return (
     <div className={styles.navigationWrapper}>
