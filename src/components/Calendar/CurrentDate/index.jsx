@@ -6,8 +6,7 @@ const CurrentDay = ({ currentDay }) => {
   return (
     <div>
       <div>{format(currentDay, 'iiii')}</div>
-      <div>{format(currentDay, 'MMM')}</div>
-      <div>{format(currentDay, 'd')}</div>
+      <div>{format(currentDay, 'MMM, d')}</div>
     </div>
   );
 };
