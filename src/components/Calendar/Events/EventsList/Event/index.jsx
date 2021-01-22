@@ -1,8 +1,8 @@
 import React from 'react';
 import Icon from '@mdi/react';
 import { mdiDeleteCircleOutline } from '@mdi/js';
-
 import Button from '../../../../fields/Button';
+import styles from './Event.module.sass';
 
 const Event = (props) => {
   const {
@@ -15,8 +15,8 @@ const Event = (props) => {
   };
 
   return (
-    <li>
-      <div>{eventBody}</div>
+    <li classname={styles.eventItem}>
+      <div className={styles.eventBody}>{eventBody}</div>
       <Button onClick={deleteEvent}>
         <Icon path={mdiDeleteCircleOutline} size={1} />
       </Button>

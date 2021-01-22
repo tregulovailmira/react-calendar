@@ -14,7 +14,6 @@
 .currentDay
     position: relative
 
-.currentDay
     & > p::before
             position: absolute
             content: "."
@@ -31,10 +30,20 @@
     background-color: #000266
     @extend %selectedDayStyles
 
+.weekend
+    background-color: rgba(0, 2, 102, 0.1)
 
 .selectedDay
     background-color: #000266
     @extend %selectedDayStyles
 
-.weekend
-    background-color: rgba(0, 2, 102, 0.1)
+.dayWithEvent
+    position: relative
+
+    & > p::after
+        position: absolute
+        content: "_"
+        bottom: 13px
+        right: 18px
+        color: #8cb4ff
+        font-size: 38px

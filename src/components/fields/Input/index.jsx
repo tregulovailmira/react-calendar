@@ -6,12 +6,12 @@ import cx from 'classnames';
 const Input = ({ stylesClasses: { container } = {}, ...props }) => {
   const [field] = useField(props);
 
-  const inputStyles = cx(container, styles.inputContainer);
+  const inputStyles = cx(styles.input, container);
 
   return (
     <>
-      <label className={inputStyles}>
-        <input {...field} {...props} className={styles.input} />
+      <label>
+        <input {...field} {...props} className={inputStyles} />
       </label>
     </>
   );

@@ -19,9 +19,10 @@ const Day = ({
   const dayStylesClasses = cx(styles.dayWrapper, {
     [styles.anotherMonthDays]: !isSameMonth(selectedMonth, day),
     [styles.currentMonthDays]: isSameMonth(selectedMonth, day),
-    [styles.selectedDay]: isSameDay(selectedDay, day),
-    [styles.currentDay]: isSameDay(currentDay, day) || eventsOfDay?.length,
     [styles.weekend]: isWeekend(day),
+    [styles.selectedDay]: isSameDay(selectedDay, day),
+    [styles.currentDay]: isSameDay(currentDay, day),
+    [styles.dayWithEvent]: eventsOfDay?.length
   });
 
   return (

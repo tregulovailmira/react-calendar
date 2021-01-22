@@ -3,7 +3,7 @@ import styles from './Button.module.sass';
 import cx from 'classnames';
 
 const Button = ({ onClick, children, container, title, type }) => {
-  const buttonStyles = cx(container, styles.button);
+  const buttonStyles = cx(styles.button, container);
 
   return (
     <button

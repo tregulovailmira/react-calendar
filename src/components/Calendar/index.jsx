@@ -56,9 +56,12 @@ const Calendar = () => {
           currentDay={currentDay}
         />
       </section>
-
       <section>
-        <Button onClick={openAddEventForm}>New event</Button>
+        {!isShowFormEvent && (
+          <Button onClick={openAddEventForm} container={styles.newEventButton}>
+            New event
+          </Button>
+        )}
         <EventsList
           selectedDay={selectedDay}
           isShown={isShowFormEvent}

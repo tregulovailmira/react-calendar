@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import useEvents from '../../../../hooks/Events';
 import Event from './Event';
 import AddEventForm from '../AddEventForm';
+import styles from './EventsList.module.sass';
 
 const EventsList = ({ selectedDay, ...props }) => {
   const [eventsOfDay, addEvent, removeEvent] = useEvents(selectedDay);
@@ -9,7 +10,7 @@ const EventsList = ({ selectedDay, ...props }) => {
   const renderEventsList = () => {
     return (
       Boolean(eventsOfDay?.length) && (
-        <ul>
+        <ul className={styles.eventsList}>
           {eventsOfDay.map((event) => {
             return (
               <Event key={event.id} event={event} removeEvent={removeEvent} />
@@ -21,10 +22,10 @@ const EventsList = ({ selectedDay, ...props }) => {
   };
 
   return (
-    <article>
+    <div>
       <AddEventForm onSubmit={addEvent} {...props} />
       {renderEventsList()}
-    </article>
+    </div>
   );
 };
 
