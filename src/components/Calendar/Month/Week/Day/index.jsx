@@ -1,7 +1,8 @@
 import React from 'react';
-import { getDate, isSameMonth, isSameDay, isWeekend } from 'date-fns';
-import styles from './Day.module.sass';
 import cx from 'classnames';
+import { getDate, isSameMonth, isSameDay, isWeekend } from 'date-fns';
+import useEvents from '../../../../../hooks/Events';
+import styles from './Day.module.sass';
 
 const Day = ({
   selectedDay,
@@ -10,6 +11,7 @@ const Day = ({
   setSelectedDayHandler,
   selectedMonth,
 }) => {
+  const [eventsOfDay] = useEvents(day);
   const selectDay = () => {
     setSelectedDayHandler(day);
   };
@@ -18,8 +20,8 @@ const Day = ({
     [styles.anotherMonthDays]: !isSameMonth(selectedMonth, day),
     [styles.currentMonthDays]: isSameMonth(selectedMonth, day),
     [styles.selectedDay]: isSameDay(selectedDay, day),
-    [styles.currentDay]: isSameDay(currentDay, day),
-    [styles.weekend]: isWeekend(day)
+    [styles.currentDay]: isSameDay(currentDay, day) || eventsOfDay?.length,
+    [styles.weekend]: isWeekend(day),
   });
 
   return (

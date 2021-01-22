@@ -1,5 +1,5 @@
 import React from 'react';
-import NavigationButton from './NavigationButton';
+import Button from '../../fields/Button';
 import { format, sub, add } from 'date-fns';
 import { mdiCalendarMonthOutline } from '@mdi/js';
 import Icon from '@mdi/react';
@@ -25,11 +25,11 @@ const CalendarNavigation = ({ selectedMonth, setMonth }) => {
     <div className={styles.navigationWrapper}>
       <div className={styles.month}>{selectMonth}</div>
       <div className={styles.navigationControls}>
-        <NavigationButton onClick={setPrevMonth}>{prevMonth}</NavigationButton>
-        <NavigationButton onClick={setCurrentMonth} title="Today">
+        <Button onClick={setPrevMonth}>{prevMonth}</Button>
+        <Button onClick={setCurrentMonth} title="Today">
           <Icon path={mdiCalendarMonthOutline} size={1} />
-        </NavigationButton>
-        <NavigationButton onClick={setNextMonth}>{nextMonth}</NavigationButton>
+        </Button>
+        <Button onClick={setNextMonth}>{nextMonth}</Button>
       </div>
     </div>
   );

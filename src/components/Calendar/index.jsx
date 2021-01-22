@@ -4,11 +4,13 @@ import Month from './Month';
 import CalendarNavigation from './CalendarNavigation';
 import { startOfMonth, add, sub } from 'date-fns';
 import styles from './Calendar.module.sass';
+import EventsList from './Events/EventsList';
+import Button from '../fields/Button';
 
 const Calendar = () => {
   const [selectedDay, setSelectedDay] = useState(new Date());
   const [selectedMonth, setSelectedMonth] = useState(startOfMonth(new Date()));
-  // const [currentDay, setCurrentDay] = useState(new Date());
+  const [isShowFormEvent, setIsShowFormEvent] = useState(false);
   const currentDay = new Date();
 
   const setSelectedDayHandler = (value) => {
@@ -29,18 +31,40 @@ const Calendar = () => {
     }
   };
 
+  const openAddEventForm = () => {
+    setIsShowFormEvent(true);
+  };
+
+  const closeAddEventForm = () => {
+    setIsShowFormEvent(false);
+  };
+
   return (
-    <article className={styles.calendarWrapper}>
-      <div className={styles.headerWrapper}>
-        <CurrentDay currentDay={currentDay} />
-        <CalendarNavigation selectedMonth={selectedMonth} setMonth={setMonth} />
-      </div>
-      <Month
-        setSelectedDayHandler={setSelectedDayHandler}
-        selectedDay={selectedDay}
-        selectedMonth={selectedMonth}
-        currentDay={currentDay}
-      />
+    <article className={styles.wrapper}>
+      <section>
+        <div className={styles.headerWrapper}>
+          <CurrentDay currentDay={currentDay} />
+          <CalendarNavigation
+            selectedMonth={selectedMonth}
+            setMonth={setMonth}
+          />
+        </div>
+        <Month
+          setSelectedDayHandler={setSelectedDayHandler}
+          selectedDay={selectedDay}
+          selectedMonth={selectedMonth}
+          currentDay={currentDay}
+        />
+      </section>
+
+      <section>
+        <Button onClick={openAddEventForm}>New event</Button>
+        <EventsList
+          selectedDay={selectedDay}
+          isShown={isShowFormEvent}
+          closeForm={closeAddEventForm}
+        />
+      </section>
     </article>
   );
 };

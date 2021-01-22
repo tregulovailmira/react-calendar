@@ -1,35 +1,49 @@
-import { useState } from 'react';
+import { useContext } from 'react';
+import { format } from 'date-fns';
+import { ContextApp } from '../../store/reduser';
 
-const useEvents = ({ day }) => {
-  const [events, setEvents] = useState({});
+const useEvents = (selectedDay) => {
+  const {
+    state: { events },
+    state,
+    dispatch,
+  } = useContext(ContextApp);
+  const eventDayKey = format(selectedDay, 'dd MM yyyy');
 
   const addEvent = (eventBody) => {
     const event = {
       id: Date.now(),
       eventBody,
-      isEnd: false,
     };
 
-    events[day].push(event);
+    if (!events[eventDayKey]) {
+      events[eventDayKey] = [];
+    }
 
-    setEvents(events);
+    events[eventDayKey].push(event);
+
+    dispatch({
+      type: 'addEvent',
+      payload: {
+        events,
+      },
+    });
   };
 
   const removeEvent = (eventID) => {
-    events[day] = events[day].filter(({ id }) => id !== eventID);
-    setEvents(events);
-  };
-
-  const toggleEvent = (eventID) => {
-    events[day] = events[day].map((event) =>
-      eventID !== event.id ? event : { ...event, isEnd: !event.isEnd }
+    events[eventDayKey] = events[eventDayKey].filter(
+      ({ id }) => id !== eventID
     );
-    setEvents(events);
+
+    dispatch({
+      type: 'removeEvent',
+      payload: {
+        events,
+      },
+    });
   };
 
-  const dayEvents = events[day] || [];
-
-  return [dayEvents, addEvent, removeEvent, toggleEvent];
+  return [events[eventDayKey], addEvent, removeEvent];
 };
 
 export default useEvents;
