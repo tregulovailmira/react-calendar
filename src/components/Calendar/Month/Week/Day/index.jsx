@@ -13,7 +13,9 @@ const Day = ({
 }) => {
   const [eventsOfDay] = useEvents(day);
   const selectDay = () => {
-    setSelectedDayHandler(day);
+    if (isSameMonth(selectedMonth, day)) {
+      setSelectedDayHandler(day);
+    }
   };
 
   const dayStylesClasses = cx(styles.dayWrapper, {
@@ -22,7 +24,7 @@ const Day = ({
     [styles.weekend]: isWeekend(day),
     [styles.selectedDay]: isSameDay(selectedDay, day),
     [styles.currentDay]: isSameDay(currentDay, day),
-    [styles.dayWithEvent]: eventsOfDay?.length
+    [styles.dayWithEvent]: eventsOfDay?.length,
   });
 
   return (
