@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import CurrentDay from './CurrentDate';
 import Month from './Month';
 import CalendarNavigation from './CalendarNavigation';
@@ -16,6 +16,10 @@ const Calendar = () => {
   const setSelectedDayHandler = (value) => {
     setSelectedDay(value);
   };
+
+  useEffect(() => {
+    closeAddEventForm();
+  }, [selectedDay]);
 
   const setMonth = (month) => {
     switch (month) {
@@ -40,7 +44,7 @@ const Calendar = () => {
   };
 
   return (
-    <article className={styles.wrapper}>
+    <div className={styles.wrapper}>
       <section>
         <div className={styles.headerWrapper}>
           <CurrentDay currentDay={currentDay} />
@@ -68,7 +72,7 @@ const Calendar = () => {
           closeForm={closeAddEventForm}
         />
       </section>
-    </article>
+    </div>
   );
 };
 
