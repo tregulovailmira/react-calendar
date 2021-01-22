@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import Icon from '@mdi/react';
 import { mdiClose } from '@mdi/js';
 import { Form, Formik } from 'formik';
@@ -7,9 +7,17 @@ import Button from '../../../fields/Button';
 import styles from './AddEventForm.module.sass';
 
 const AddEventForm = ({ onSubmit, closeForm, isShown }) => {
+  const input = useRef();
   const initialValues = {
     event: '',
   };
+
+  useEffect(() => {
+    console.log(input);
+    if (isShown) {
+      input?.current?.focus();
+    }
+  }, [isShown]);
 
   const onSubmitHandler = (values, formikBag) => {
     const { event } = values;
@@ -25,6 +33,7 @@ const AddEventForm = ({ onSubmit, closeForm, isShown }) => {
       <Formik onSubmit={onSubmitHandler} initialValues={initialValues}>
         <Form className={styles.formWrapper}>
           <Input
+            inputRef={input}
             placeholder="Event of the day"
             name="event"
             label="event"
